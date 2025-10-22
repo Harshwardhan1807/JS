@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Operations</title>
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: center;
+            font-size: 18px;
+            
+            font-family: Arial, sans-serif;
+        }
+
+        pre {
+            font-size: 18px;
+        }
+
+        input,
+        button {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body style="background-color: lightblue; text-align: center;">
+    <h2>Harshwardhan Sawant - 42158</h2>
+    <h2>Array Operations</h2>
+
+    <table style="margin: 0 auto; text-align: left;">
+        <tr>
+            <td><label>Maximum size of array:</label></td>
+            <td>
+                <input type="number" id="size">
+                <button onclick="setArray()">Set</button>
+            </td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td><label>Enter element:</label></td>
+            <td><input type="text" id="elementInput"></td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2">
+                <pre id="setMessage"></pre>
+            </td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2" style="text-align: center;"><button onclick="addElement()">Add Element</button></td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2">
+                <pre id="elementOutput"></pre>
+            </td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td><label>Enter index to check:</label></td>
+            <td><input type="number" id="indexInput"></td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2" style="text-align: center;"><button onclick="checkIfArray()">Check if Array</button></td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2">
+                <pre id="checkOutput"></pre>
+            </td>
+        </tr>
+        <tr style="height:10px"></tr>
+        <tr>
+            <td colspan="2">
+                <h3>Final Array:</h3>
+                <pre id="finalArray"></pre>
+            </td>
+        </tr>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

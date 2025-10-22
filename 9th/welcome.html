@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: lightblue;
+    }
+
+    .logout-btn {
+      margin-top: 20px;
+      padding: 8px 14px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .message-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 700px;
+    }
+
+    .message-card h2 {
+      color: #27ae60;
+      margin: 0;
+      font-size: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="message-card">
+    <h2 id="welcomeMsg"></h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+
+  <script>
+    const name = localStorage.getItem('studentName') || 'Student';
+    document.getElementById('welcomeMsg').innerText = `Congratulations ${name}! You have successfully registered.`;
+
+    function logout() {
+      localStorage.removeItem('studentName');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Countdown Timer with Start, End and Reset</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      border: 2px solid rgba(0, 0, 0, 0.24);
+      padding: 10px;
+      text-align: center;
+      height: 300px;
+    }
+    button {
+      margin-top: 20px;
+    }
+    div {
+      margin-bottom: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Countdown Timer</h2>
+    <div class="student-info">
+      Name: <strong>Harshwardhan Sawant</strong><br>
+      Roll No: <strong>42158</strong>
+    </div>
+
+    <label for="startDate">Enter start date and time:</label>
+    <input type="datetime-local" id="startDate" />
+
+    <label for="endDate">Enter end date and time:</label>
+    <input type="datetime-local" id="endDate" />
+
+    <div class="btn-row">
+      <button id="startBtn">Start Countdown</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="message" id="message"></div>
+    <div id="countdown"></div>
+  </div>
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const countdownEl = document.getElementById('countdown');
+    const messageEl = document.getElementById('message');
+    const startInput = document.getElementById('startDate');
+    const endInput = document.getElementById('endDate');
+
+    let intervalId = null;
+
+    startBtn.addEventListener('click', () => {
+      messageEl.textContent = "";
+      countdownEl.textContent = "";
+
+      if (!startInput.value || !endInput.value) {
+        messageEl.textContent = "Please select both start and end date/time.";
+        return;
+      }
+
+      const startTime = new Date(startInput.value).getTime();
+      const endTime = new Date(endInput.value).getTime();
+
+      if (isNaN(startTime) || isNaN(endTime)) {
+        messageEl.textContent = "Invalid date format.";
+        return;
+      }
+      if (startTime >= endTime) {
+        messageEl.textContent = "Start date/time must be before end date/time.";
+        return;
+      }
+
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+
+      intervalId = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+
+        if (distance <= 0) {
+          clearInterval(intervalId);
+          countdownEl.textContent = "Countdown ended.";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+      }, 1000);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      countdownEl.textContent = "";
+      messageEl.textContent = "";
+      startInput.value = "";
+      endInput.value = "";
+    });
+  </script>
+</body>
+
+</html>

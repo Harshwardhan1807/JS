@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42158</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: lightblue;
+        }
+        label {
+            display: block;
+            margin: 20px;
+            font-size: 24px;
+        }
+        input {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body id="body">
+    <label id="name">Name: Harshwardhan Sawant</label>
+    <label>Roll No: 42158</label>
+    <label>Batch: <input id="input"></label>
+    <script>
+        const name_ele = document.getElementById("name");
+        const body = document.getElementById("body");
+        const input = document.getElementById("input");
+        name_ele.addEventListener("mouseover", function() {
+            body.style.backgroundColor = "yellow";
+        });
+        name_ele.addEventListener("mouseout", function() {
+            body.style.backgroundColor = "lightblue";
+        });
+        input.addEventListener("focus", function() {
+            body.style.backgroundColor = "orange";
+        });
+        input.addEventListener("blur", function() {
+            body.style.backgroundColor = "lightblue";
+        });
+    </script>
+</body>
+</html>

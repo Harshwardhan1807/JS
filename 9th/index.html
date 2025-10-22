@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        .form-box {
+            background: #fff;
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2,h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .gender-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 8px;
+        }
+
+        .gender-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gender-option input[type="radio"] {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-box" id="form-container">
+        <h2>Student Registration</h2>
+        <h4>Harshwardhan Sawant - 42158</h4>
+        <form id="studentForm" novalidate>
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter first name" />
+            <div class="error" id="firstNameError"></div>
+
+            <label for="middleName">Middle Name *</label>
+            <input type="text" id="middleName" name="middleName" placeholder="Enter middle name" />
+            <div class="error" id="middleNameError"></div>
+
+            <label for="surname">Surname *</label>
+            <input type="text" id="surname" name="surname" placeholder="Enter surname" />
+            <div class="error" id="surnameError"></div>
+
+
+            <label for="address">Address *</label>
+            <input type="text" id="address" name="address" placeholder="Enter address" />
+            <div class="error" id="addressError"></div>
+
+            <label for="city">City *</label>
+            <input type="text" id="city" name="city" placeholder="Enter city" />
+            <div class="error" id="cityError"></div>
+
+            <label for="state">State *</label>
+            <select id="state" name="state">
+                <option value="">Select State</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+            </select>
+            <div class="error" id="stateError"></div>
+
+            <label for="gender">Gender *</label>
+            <div class="gender-group">
+                <div class="gender-option">
+                    <input type="radio" name="gender" value="Male" id="genderMale" />
+                    <label for="genderMale">Male</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" name="gender" value="Female" id="genderFemale" />
+                    <label for="genderFemale">Female</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" name="gender" value="Other" id="genderOther" />
+                    <label for="genderOther">Other</label>
+                </div>
+            </div>
+            <div class="error" id="genderError"></div>
+
+            <label for="mobile">Mobile Number *</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="10 digit number" />
+            <div class="error" id="mobileError"></div>
+
+            <label for="email">Email ID *</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" />
+            <div class="error" id="emailError"></div>
+
+            <div class="buttons">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="reset-btn" id="resetBtn">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('studentForm');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function isValidName(name) {
+            return /^[A-Za-z]+$/.test(name.trim());
+        }
+        function isValidMobile(mobile) {
+            return /^[789][0-9]{9}$/.test(mobile.trim());
+        }
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+        }
+        function isValidCity(city) {
+            return /^[A-Za-z\s]+$/.test(city.trim());
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            ['firstNameError', 'middleNameError', 'surnameError', 'addressError', 'cityError',
+                'genderError', 'stateError', 'mobileError', 'emailError'].forEach(id => document.getElementById(id).innerText = '');
+
+            const firstName = form.firstName.value;
+            const middleName = form.middleName.value;
+            const surname = form.surname.value;
+            const address = form.address.value;
+            const city = form.city.value;
+            const gender = form.gender.value;
+            const state = form.state.value;
+            const mobile = form.mobile.value;
+            const email = form.email.value;
+
+            let valid = true;
+
+            if (!firstName) {
+                document.getElementById('firstNameError').innerText = 'First name is required';
+                valid = false;
+            } else if (!isValidName(firstName)) {
+                document.getElementById('firstNameError').innerText = 'Only letters are allowed, no spaces and special characters';
+                valid = false;
+            }
+
+            if (!middleName) {
+                document.getElementById('middleNameError').innerText = 'Middle name is required';
+                valid = false;
+            } else if (!isValidName(middleName)) {
+                document.getElementById('middleNameError').innerText = 'Only letters are allowed, no spaces and special characters';
+                valid = false;
+            }
+
+            if (!surname) {
+                document.getElementById('surnameError').innerText = 'Surname is required';
+                valid = false;
+            } else if (!isValidName(surname)) {
+                document.getElementById('surnameError').innerText = 'Only letters are allowed, no spaces and special characters';
+                valid = false;
+            }
+
+            if (!address) {
+                document.getElementById('addressError').innerText = 'Address is required';
+                valid = false;
+            }
+
+            if (!city) {
+                document.getElementById('cityError').innerText = 'City is required';
+                valid = false;
+            } else if (!isValidCity(city)) {
+                document.getElementById('cityError').innerText = 'City must contain only letters';
+                valid = false;
+            }
+
+            if (!gender) {
+                document.getElementById('genderError').innerText = 'Select a gender';
+                valid = false;
+            }
+
+            if (!state) {
+                document.getElementById('stateError').innerText = 'Select a state';
+                valid = false;
+            }
+            
+            if (!mobile) {
+                document.getElementById('mobileError').innerText = 'Mobile number is required';
+                valid = false;
+            } else if (!isValidMobile(mobile)) {
+                document.getElementById('mobileError').innerText = 'Must start with 7/8/9 and be 10 digits';
+                valid = false;
+            }
+
+            if (!email) {
+                document.getElementById('emailError').innerText = 'Email is required';
+                valid = false;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').innerText = 'Enter a valid email';
+                valid = false;
+            }
+
+            if (valid) {
+                const fullName = `${firstName.trim()} ${middleName.trim()} ${surname.trim()}`.replace(/\s+/g, ' ').trim();
+                localStorage.setItem('studentName', fullName);
+                window.location.href = 'welcome.html';
+            }
+        });
+
+        resetBtn.addEventListener('click', function () {
+            form.reset();
+            ['firstNameError', 'middleNameError', 'surnameError', 'addressError', 'cityError',
+                'genderError', 'stateError', 'mobileError', 'emailError'].forEach(id => document.getElementById(id).innerText = '');
+        });
+    </script>
+
+
+</body>
+
+</html>

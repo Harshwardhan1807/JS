@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Area | 42158</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .container{
+            border: 2px solid rgba(0, 0, 0, 0.24);
+            width: 500px;
+            padding: 10px;
+            text-align: center;
+            background-color: lightblue;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+    <b>Harshwardhan Sawant</b><br>
+    <b>Roll No: 42158</b>
+    <h1>Calculate Area of Shapes</h1>
+    <h2>Area of Circle</h2>
+    <label><b> Enter radius:</b></label>
+    <input id="radius" type="number">
+    <br><br>
+    <b id="areaOfCircle"></b><br><br>
+    <button type="submit" onclick="areaOfCircle()">Calculate</button>
+    <button type="submit" id="circle" onclick="reset()">Reset</button>
+
+    <br>
+
+    <h2>Area of Rectangle</h2>
+    <label><b> Enter length:</b></label>
+    <input id="length" type="number" min=0>
+    <br><br>
+    <label><b> Enter breadth:</b></label>
+    <input id="breadth" type="number" min=0>
+    <br><br>
+    <b id="areaOfRectangle"></b><br><br>
+    <button type="submit" onclick="areaOfRectangle()">Calculate</button>
+    <button type="submit" id="rectangle" onclick="reset()">Reset</button>
+    
+    <br>
+
+    <h2>Area of Triangle</h2>
+    <label><b> Enter side1:</b></label>
+    <input id="side1" type="number">
+    <br><br>
+    <label><b> Enter side2:</b></label>
+    <input id="side2" type="number">
+    <br><br>
+    <label><b> Enter side3:</b></label>
+    <input id="side3" type="number">
+    <br><br>
+    <b id="areaOfTriangle"></b><br><br>
+    <button type="submit" onclick="areaOfTriangle()">Calculate</button>
+    <button type="submit" id="triangle" onclick="reset()">Reset</button>
+    </div>
+</body>
+
+</html>

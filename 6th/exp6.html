@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Array Operations</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            border: 2px solid rgba(0, 0, 0, 0.24);
+            width: 500px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Array Operations</h2>
+        Name: <strong>Harshwardhan Sawant</strong> | Roll No: <strong>42158</strong><br><br>
+
+        <label>Enter size of array:</label>
+        <input type="number" id="size" min="1" placeholder="e.g. 5">
+        <button onclick="setSize()">Set Size</button><br><br>
+
+        <span id="elements"></span><br>
+        <button id="submitBtn" style="display:none" onclick="submit()">Submit Elements</button><br><br>
+
+        <strong>Array:</strong>
+        <span id="arrDisplay">[]</span><br><br>
+
+        <h3>Remove Element</h3>
+        <input type="number" id="removeVal" placeholder="Value to remove"><br><br>
+        <button onclick="removeValFunc(false)">Remove (Normal)</button>
+        <button onclick="removeValFunc(true)">Remove (Splice)</button><br>
+        <span id="removeDisplay">[]</span><br><br>
+
+        <h3>Search Element</h3>
+        <input type="number" id="searchVal" placeholder="Value to search"><br><br>
+        <button onclick="search(false)">Search (Linear)</button>
+        <button onclick="search(true)">Search (Includes)</button><br>
+        <span id="searchMsg"></span><br><br>
+
+        <h3>Empty Array</h3>
+        <button onclick="empty(false)">Empty (Normal)</button>
+        <button onclick="empty(true)">Empty (Splice)</button><br>
+        <span id="emptyDisplay">[]</span><br><br>
+
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        let arr = [];
+
+        function setSize() {
+            const size = +document.getElementById("size").value;
+            const div = document.getElementById("elements");
+            div.innerHTML = "";
+            if (size > 0) {
+                for (let i = 0; i < size; i++)
+                    div.innerHTML += `<input style="margin: 5px;" type="number" id="el${i}" placeholder="Element ${i + 1}">`;
+                document.getElementById("submitBtn").style.display = "block";
+            } else showMsg("Enter valid size.");
+        }
+
+        function submit() {
+            const inputs = document.querySelectorAll("#elements input");
+            arr = [...inputs].map(i => +i.value);
+            if (arr.some(isNaN)) return showMsg("Enter valid numbers.");
+            updateDisplay("arrDisplay", arr);
+            clearAll();
+        }
+
+        function removeValFunc(useSplice) {
+            const val = +document.getElementById("removeVal").value;
+            if (isNaN(val)) return showMsg("Enter valid number.");
+            let newArr = [...arr];
+            if (useSplice) {
+                const idx = newArr.indexOf(val);
+                if (idx !== -1) newArr.splice(idx, 1);
+            } else newArr = newArr.filter(x => x !== val);
+            arr = [...newArr];
+            updateDisplay("removeDisplay", newArr);
+            updateDisplay("arrDisplay", arr);
+            showMsg(newArr.includes(val) ? `Removed ${val}` : `${val} not found.`);
+        }
+
+        function search(useIncludes) {
+            const val = +document.getElementById("searchVal").value;
+            if (isNaN(val)) return showMsg("Enter valid number.", "searchMsg");
+            const idx = arr.indexOf(val);
+            const found = useIncludes ? arr.includes(val) : idx !== -1;
+            document.getElementById("searchMsg").textContent = found ? `Found at index ${idx}` : "Not found.";
+        }
+
+        function empty(useSplice) {
+            if (useSplice) arr.splice(0);
+            else while (arr.length) arr.pop();
+            updateDisplay("emptyDisplay", arr);
+            updateDisplay("arrDisplay", arr);
+            showMsg(useSplice ? "Emptied using splice." : "Emptied normally.");
+        }
+
+        function updateDisplay(id, a) {
+            document.getElementById(id).textContent = JSON.stringify(a);
+        }
+
+        function showMsg(msg, id = "msg") {
+            document.getElementById(id).textContent = msg;
+        }
+
+        function clearAll() {
+            ["removeDisplay", "emptyDisplay", "msg", "searchMsg"].forEach(id => document.getElementById(id).textContent = id.includes("Display") ? "[]" : "");
+        }
+    </script>
+</body>
+
+</html>
