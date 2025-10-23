@@ -1,86 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Array Operations</title>
+    <meta charset="UTF-8">
+    <title>Array Operations 42128</title>
     <style>
         body {
-            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            border: 2px solid rgba(0, 0, 0, 0.24);
+            width: 500px;
+            height: 600px;
+            padding: 50px;
             text-align: center;
-            font-size: 18px;
-            
-            font-family: Arial, sans-serif;
+            background-color: lightblue;
         }
 
-        pre {
-            font-size: 18px;
-        }
-
-        input,
-        button {
-            font-size: 16px;
+        div {
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 
-<body style="background-color: lightblue; text-align: center;">
-    <h2>Harshwardhan Sawant - 42158</h2>
-    <h2>Array Operations</h2>
+<body>
+    <div class="container">
+        <h2>Array Operations 42128</h2>
 
-    <table style="margin: 0 auto; text-align: left;">
-        <tr>
-            <td><label>Maximum size of array:</label></td>
-            <td>
-                <input type="number" id="size">
-                <button onclick="setArray()">Set</button>
-            </td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td><label>Enter element:</label></td>
-            <td><input type="text" id="elementInput"></td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2">
-                <pre id="setMessage"></pre>
-            </td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2" style="text-align: center;"><button onclick="addElement()">Add Element</button></td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2">
-                <pre id="elementOutput"></pre>
-            </td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td><label>Enter index to check:</label></td>
-            <td><input type="number" id="indexInput"></td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2" style="text-align: center;"><button onclick="checkIfArray()">Check if Array</button></td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2">
-                <pre id="checkOutput"></pre>
-            </td>
-        </tr>
-        <tr style="height:10px"></tr>
-        <tr>
-            <td colspan="2">
-                <h3>Final Array:</h3>
-                <pre id="finalArray"></pre>
-            </td>
-        </tr>
-    </table>
+        <h3>Enter size of array:</h3>
+        <input type="number" id="arraySize" min="1">
+        <button onclick="setSize()">Set Size</button>
+        <div id="sizeOutput"></div>
 
-    <script src="script.js"></script>
+        <h3>Enter array elements:</h3>
+        <input type="text" id="appendInput">
+        <button onclick="appendElement()">Add to Array</button>
+        <div id="appendOutput"></div>
+
+        <h3>Check if value at index is an array:</h3>
+        <input type="number" id="checkIndex">
+        <button onclick="checkIsArray()">Check</button>
+        <div id="checkOutput"></div>
+
+        <h3>Current Array:</h3>
+        <div id="finalArray">[]</div>
+        <br><br>
+        <button onclick="window.location.reload();">Reset</button>
+    </div>
+
+    <script>
+        let maxSize = 0;
+        let elements = [];
+
+        function setSize() {
+            maxSize = parseInt(document.getElementById("arraySize").value);
+            elements = [];
+            document.getElementById("finalArray").innerHTML = JSON.stringify(elements, null, 2);
+            document.getElementById("sizeOutput").innerHTML = "Array size set to " + maxSize;
+            document.getElementById("appendOutput").innerHTML = "";
+            document.getElementById("checkOutput").innerHTML = "";
+        }
+
+        function appendElement() {
+            if (elements.length >= maxSize) {
+                document.getElementById("appendOutput").innerHTML = "Array is full. Cannot add more items.";
+                return;
+            }
+
+            let input = document.getElementById("appendInput").value.trim();
+            let parsed;
+            try {
+                parsed = JSON.parse(input);
+            } catch {
+                parsed = input;
+            }
+
+            elements.push(parsed);
+            document.getElementById("appendOutput").innerHTML = "Value added successfully.";
+            document.getElementById("finalArray").innerHTML = JSON.stringify(elements, null, 2);
+            document.getElementById("appendInput").value = "";
+        }
+
+        function checkIsArray() {
+            let index = parseInt(document.getElementById("checkIndex").value);
+            if (index >= 0 && index < elements.length) {
+                let isArr = Array.isArray(elements[index]);
+                document.getElementById("checkOutput").innerHTML =
+                    "Value at index " + index + (isArr ? " is an array." : " is NOT an array.");
+            } else {
+                document.getElementById("checkOutput").innerHTML = "Invalid index.";
+            }
+        }
+    </script>
 </body>
 
 </html>

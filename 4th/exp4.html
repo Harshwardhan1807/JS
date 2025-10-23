@@ -1,86 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Experiment 4</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #eef2f3;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
     }
     .container {
-      background-color: #ffffff;
-      padding: 25px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      width: 320px;
-      text-align: left;
-    }
-    h2 {
+      border: 2px solid rgba(0, 0, 0, 0.24);
+      width: 500px;
+      height: 500px;
+      padding: 50px;
       text-align: center;
-      color: #444;
-      margin-bottom: 20px;
+      background-color: lightblue;
     }
-    .student-info {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    label {
-      margin-top: 10px;
-      font-weight: 500;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 6px;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      border: none;
+    .res {
       font-weight: bold;
-      margin-top: 15px;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-    #result {
       margin-top: 20px;
-      padding: 10px;
-      background-color: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      min-height: 40px;
-      font-size: 14px;
-      color: #333;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>Experiment 4</h2>
-    <div class="student-info">
+    <div>
       Name: <strong>Harshwardhan Sawant</strong><br>
       Roll No: <strong>42158</strong>
     </div>
 
-    <label for="string1">Enter String 1:</label>
-    <input type="text" id="string1" placeholder="String 1">
+    <h3>Enter String 1:</h3>
+    <input type="text" id="string1">
 
-    <label for="string2">Enter String 2:</label>
-    <input type="text" id="string2" placeholder="String 2">
+    <h3>Enter String 2:</h3>
+    <input type="text" id="string2">
 
-    <label for="method">Select Comparison Method:</label>
+    <h3>Select Comparison Method:</h3>
     <select id="method">
       <option value="strict">Strict Equality (===)</option>
       <option value="loose">Loose Equality (==)</option>
@@ -89,9 +47,10 @@
       <option value="substring">Substring Check</option>
     </select>
 
+
     <button onclick="compareStrings()">Compare</button>
 
-    <div id="result"></div>
+    <div class="res" id="result"></div>
   </div>
 
   <script>
@@ -141,4 +100,5 @@
     }
   </script>
 </body>
+
 </html>

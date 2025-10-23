@@ -1,73 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 15px;
-      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
     }
+
+    .container {
+      border: 2px solid rgba(0, 0, 0, 0.24);
+      width: 500px;
+      padding: 50px;
+      text-align: center;
+      background-color: lightblue;
+    }
+
+    input {
+      margin: 5px;
+    }
+
     h2 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-    .section {
-      margin-bottom: 20px;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #ddd;
-    }
-    input[type="text"], button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 8px;
-      box-sizing: border-box;
-    }
-    .output {
-      margin-top: 10px;
-    }
-    .error {
-      margin-top: 10px;
+      margin-top: 50px;
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <h1>String Operations</h1>
+    <p><strong>Harshwardhan Sawant - 42158</strong></p>
 
-  <h1>String Operations</h1>
-  <p><strong>Harshwardhan Sawant - 42158</strong></p>
-
-  <div class="section" id="reverseSection">
     <h2>1. Reverse String</h2>
     <input type="text" id="reverseInput" placeholder="Enter a string to reverse">
     <button onclick="reverseString()">Reverse</button>
     <button onclick="resetReverse()">Reset</button>
-    <div id="reverseOutput" class="output"></div>
-    <div id="reverseError" class="error"></div>
-  </div>
+    <div id="reverse"></div>
 
-  <div class="section" id="replaceSection">
     <h2>2. Replace Characters</h2>
     <input type="text" id="replaceInput" placeholder="Original string">
     <input type="text" id="replaceFrom" placeholder="Character to replace">
     <input type="text" id="replaceTo" placeholder="Replace with">
     <button onclick="replaceCharacters()">Replace</button>
     <button onclick="resetReplace()">Reset</button>
-    <div id="replaceOutput" class="output"></div>
-    <div id="replaceError" class="error"></div>
-  </div>
+    <div id="replace"></div>
 
-  <div class="section" id="palindromeSection">
     <h2>3. Check Palindrome</h2>
     <input type="text" id="palindromeInput" placeholder="Enter string to check">
     <button onclick="checkPalindrome()">Check</button>
     <button onclick="resetPalindrome()">Reset</button>
-    <div id="palindromeOutput" class="output"></div>
-    <div id="palindromeError" class="error"></div>
+    <div id="palindrome"></div>
+
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>

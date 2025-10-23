@@ -1,80 +1,75 @@
-// Utility function to clear outputs and errors
-function clearOutput(id) {
-  document.getElementById(id + 'Output').innerText = '';
-  document.getElementById(id + 'Error').innerText = '';
-}
-
-// Reverse string function
 function reverseString() {
-  clearOutput('reverse');
+  document.getElementById('reverse').innerText = '';
   const input = document.getElementById('reverseInput').value.trim();
+  const output = document.getElementById('reverse');
+
   if (!input) {
-    document.getElementById('reverseError').innerText = 'Please enter a valid string.';
+    output.innerText = 'Please enter a valid string.';
     return;
   }
+
   const reversed = input.split('').reverse().join('');
-  document.getElementById('reverseOutput').innerText = 'Reversed: ' + reversed;
+  output.innerText = 'Reversed: ' + reversed;
 }
 
-// Reset reverse section
 function resetReverse() {
   document.getElementById('reverseInput').value = '';
-  clearOutput('reverse');
+  document.getElementById('reverse').innerText = '';
 }
 
-// Replace characters function
 function replaceCharacters() {
-  clearOutput('replace');
+  document.getElementById('replace').innerText = '';
   const input = document.getElementById('replaceInput').value;
   const from = document.getElementById('replaceFrom').value;
   const to = document.getElementById('replaceTo').value;
+  const output = document.getElementById('replace');
 
   if (!input.trim()) {
-    document.getElementById('replaceError').innerText = 'Original string cannot be empty.';
+    output.innerText = 'Original string cannot be empty.';
     return;
   }
   if (from.length !== 1) {
-    document.getElementById('replaceError').innerText = 'Character to replace must be a single character.';
+    output.innerText = 'Character to replace must be a single character.';
     return;
   }
   if (to.length !== 1) {
-    document.getElementById('replaceError').innerText = 'Replacement must be a single character.';
+    output.innerText = 'Replacement must be a single character.';
     return;
   }
   if (!input.includes(from)) {
-    document.getElementById('replaceError').innerText = `The character "${from}" is not present in the original string.`;
+    output.innerText = `The character "${from}" is not present in the original string.`;
     return;
   }
 
   const replaced = input.split(from).join(to);
-  document.getElementById('replaceOutput').innerText = 'Replaced String: ' + replaced;
+  output.innerText = 'Replaced String: ' + replaced;
 }
 
-// Reset replace section
 function resetReplace() {
   document.getElementById('replaceInput').value = '';
   document.getElementById('replaceFrom').value = '';
   document.getElementById('replaceTo').value = '';
-  clearOutput('replace');
+  document.getElementById('replace').innerText = '';
 }
 
-// Palindrome checker
 function checkPalindrome() {
-  clearOutput('palindrome');
+  document.getElementById('palindrome').innerText = '';
   const input = document.getElementById('palindromeInput').value.trim();
+  const output = document.getElementById('palindrome');
+
   if (!input) {
-    document.getElementById('palindromeError').innerText = 'Please enter a valid string.';
+    output.innerText = 'Please enter a valid string.';
     return;
   }
+
   const clean = input.toLowerCase().replace(/[^a-z0-9]/g, '');
   const isPalindrome = clean === clean.split('').reverse().join('');
-  document.getElementById('palindromeOutput').innerText = isPalindrome
+  output.innerText = isPalindrome
     ? 'Yes, it is a palindrome.'
     : 'No, it is not a palindrome.';
 }
 
-// Reset palindrome section
 function resetPalindrome() {
   document.getElementById('palindromeInput').value = '';
-  clearOutput('palindrome');
+  document.getElementById('palindrome').innerText = '';
 }
