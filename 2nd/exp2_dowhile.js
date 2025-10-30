@@ -1,24 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
+const genTable=()=>{
   const numberInput = document.getElementById('number-input');
   const generateBtn = document.getElementById('generate-btn');
   const resetBtn = document.getElementById('reset-btn');
   const tableResult = document.getElementById('table-result');
-  generateBtn.addEventListener('click', () => {
-    const number = parseInt(numberInput.value, 10);
-    if (isNaN(number) || number === 0) {
-      tableResult.innerHTML = '<p style="color: red;">Please enter a non-zero number.</p>';
+  generateBtn.addEventListener('click',()=>{
+    const n=parseInt(numberInput.value,10);
+    if(isNaN(n) || n===0){
+      tableResult.innerHTML='Please enter a non-zero valid number';
       return;
     }
-    let tableHTML = `<h2>Table for ${number}:</h2>`;
+    let tableHTML=`<h2> Table for ${n}: </h2>`
     let i = 1;
     do {
-      tableHTML += `<p>${number} &times; ${i} = ${number * i}</p>`;
+      tableHTML += `<p>${n} &times; ${i} = ${n * i}</p>`;
       i++;
     } while (i <= 10);
-    tableResult.innerHTML = tableHTML;
-  });
-  resetBtn.addEventListener('click', () => {
-    numberInput.value = '';
-    tableResult.innerHTML = '';
-  });
-});
+    tableResult.innerHTML=tableHTML
+  })
+  resetBtn.addEventListener('click',()=>{
+    numberInput.value='';
+    tableResult.innerHTML='';
+  })
+
+}
+
+genTable();
