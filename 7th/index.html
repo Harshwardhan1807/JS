@@ -31,7 +31,7 @@
         <h2>Array Operations 42128</h2>
 
         <h3>Enter size of array:</h3>
-        <input type="number" id="arraySize" min="1">
+        <input type="number" id="arraySize">
         <button onclick="setSize()">Set Size</button>
         <div id="sizeOutput"></div>
 
@@ -48,7 +48,7 @@
         <h3>Current Array:</h3>
         <div id="finalArray">[]</div>
         <br><br>
-        <button onclick="window.location.reload();">Reset</button>
+        <button onclick="reset()">Reset</button>
     </div>
 
     <script>
@@ -57,6 +57,10 @@
 
         function setSize() {
             maxSize = parseInt(document.getElementById("arraySize").value);
+            if(isNaN(maxSize) || maxSize <= 0){
+                document.getElementById("sizeOutput").innerHTML = "Enter valid size.";
+                return;
+            }
             elements = [];
             document.getElementById("finalArray").innerHTML = JSON.stringify(elements, null, 2);
             document.getElementById("sizeOutput").innerHTML = "Array size set to " + maxSize;
@@ -93,6 +97,18 @@
             } else {
                 document.getElementById("checkOutput").innerHTML = "Invalid index.";
             }
+        }
+
+        function reset() {
+            maxSize = 0;
+            elements = [];
+            document.getElementById("finalArray").innerHTML = JSON.stringify(elements, null, 2);
+            document.getElementById("sizeOutput").innerHTML = "";
+            document.getElementById("appendOutput").innerHTML = "";
+            document.getElementById("checkOutput").innerHTML = "";
+            document.getElementById("arraySize").value = "";
+            document.getElementById("appendInput").value = "";
+            document.getElementById("checkIndex").value = "";
         }
     </script>
 </body>
