@@ -11,7 +11,7 @@ const genTable=()=>{
     }
     let tableHTML=`<h2> Table for ${n}: </h2>`
     for(let i=1;i<=10;i++){
-      tableHTML+=`<p>${n} times ${i} =${n*i} </p>`
+      tableHTML+=`<p>${n} &times ${i} =${n*i} </p>`
     }
     tableResult.innerHTML=tableHTML
   })

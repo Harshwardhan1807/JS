@@ -7,38 +7,33 @@
   <title>Multiplication Table | 42158 </title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      border: 2px solid rgba(0, 0, 0, 0.24);
+      width: 500px;
+      height: 650px;
+      padding: 10px;
       text-align: center;
       background-color: lightblue;
-    }
-
-    #table-result {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 1em;
-    }
-
-    input[type="number"],
-    button {
-      padding: 8px;
-      font-size: 1em;
-      margin: 5px;
     }
   </style>
 </head>
 
 <body>
-
-  <b>Harshwardhan Sawant</b><br>
-  <b>Roll No: 42158</b>
-  <h1>Multiplication Table Generator using do while loop</h1>
-  <label for="number-input">Enter a number:</label>
-  <input type="number" id="number-input" placeholder="Enter a number">
-  <button id="generate-btn">Generate Table</button>
-  <button id="reset-btn">Reset</button>
-  <div id="table-result">
+  <div class="container">
+    <b>Harshwardhan Sawant</b><br>
+    <b>Roll No: 42158</b>
+    <h1>Multiplication Table Generator using do while loop</h1>
+    <label for="number-input">Enter a number:</label>
+    <input type="number" id="number-input" placeholder="Enter a number">
+    <button id="generate-btn">Generate Table</button>
+    <button id="reset-btn">Reset</button>
+    <div id="table-result">
+    </div>
   </div>
-
   <script src="exp2_for.js"></script>
 </body>
 

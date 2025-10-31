@@ -59,10 +59,10 @@
       const endInput = document.getElementById('endDate');
       const msg = document.getElementById('msg');
 
-      msg.textContent = "";
+      msg.innerHTML = "";
 
       if (!startInput.value || !endInput.value) {
-        msg.textContent = "Please select both start and end date/time.";
+        msg.innerHTML = "Please select both start and end date/time.";
         return;
       }
 
@@ -70,12 +70,12 @@
       const endTime = new Date(endInput.value).getTime();
 
       if (isNaN(startTime) || isNaN(endTime)) {
-        msg.textContent = "Invalid date format.";
+        msg.innerHTML = "Invalid date format.";
         return;
       }
 
       if (startTime >= endTime) {
-        msg.textContent = "Start date/time must be before end date/time.";
+        msg.innerHTML = "Start date/time must be before end date/time.";
         return;
       }
 
@@ -87,7 +87,7 @@
 
         if (distance <= 0) {
           clearInterval(intervalId);
-          msg.textContent = "Countdown ended.";
+          msg.innerHTML = "Countdown ended.";
           return;
         }
 
@@ -96,7 +96,7 @@
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        msg.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+        msg.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
       }, 1000);
     }
 
@@ -104,7 +104,7 @@
       if (intervalId) clearInterval(intervalId);
       document.getElementById('startDate').value = "";
       document.getElementById('endDate').value = "";
-      document.getElementById('msg').textContent = "";
+      document.getElementById('msg').innerHTML = "";
     }
   </script>
 </body>
