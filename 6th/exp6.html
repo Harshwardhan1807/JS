@@ -32,12 +32,12 @@
         <h3>Enter size of array:</h3>
         <input type="number" id="size" min="1" placeholder="e.g. 5">
         <button onclick="setSize()">Set Size</button>
+        <div id="sizeOutput"></div>
 
-        <p id="elements"></p>
-        <button id="submitBtn" style="display:none" onclick="submit()">Submit Elements</button>
-
-        <strong>Array:</strong>
-        <p id="arrDisplay">[]</p>
+        <h3>Enter array element:</h3>
+        <input type="number" id="appendInput">
+        <button onclick="appendElement()">Add to Array</button>
+        <div id="appendOutput"></div>
 
         <h3>Remove Element</h3>
         <input type="number" id="removeVal" placeholder="Value to remove">
@@ -55,35 +55,42 @@
         <button onclick="empty(false)">Empty (Normal)</button>
         <button onclick="empty(true)">Empty (Splice)</button><br>
         <p id="emptyMsg"></p>
+
+        <strong>Current Array:</strong>
+        <p id="arrDisplay">[]</p>
     </div>
 
     <script>
         let arr = [];
+        let maxSize = 0;
 
         function setSize() {
-            const size = +document.getElementById("size").value;
-            const div = document.getElementById("elements");
-            div.innerHTML = "";
-            if (size > 0) {
-                for (let i = 0; i < size; i++)
-                    div.innerHTML += `<input style="margin: 5px;" type="number" id="el${i}" placeholder="Element ${i + 1}">`;
-                document.getElementById("submitBtn").style.display = "block";
-            } else {
-                document.getElementById("removeMsg").textContent = "Enter valid size.";
-            }
-        }
-
-        function submit() {
-            const inputs = document.querySelectorAll("#elements input");
-            arr = [...inputs].map(i => +i.value);
-            if (arr.some(isNaN)) {
-                document.getElementById("removeMsg").textContent = "Enter valid numbers.";
+            maxSize = parseInt(document.getElementById("size").value);
+            if(isNaN(maxSize) || maxSize <= 0){
+                document.getElementById("sizeOutput").innerHTML = "Enter valid size.";
                 return;
             }
-            document.getElementById("arrDisplay").textContent = JSON.stringify(arr);
-            document.getElementById("removeMsg").textContent = "";
-            document.getElementById("searchMsg").textContent = "";
-            document.getElementById("emptyMsg").textContent = "";
+            arr = [];
+            document.getElementById("arrDisplay").innerHTML = JSON.stringify(arr, null, 2);
+            document.getElementById("sizeOutput").innerHTML = "Array size set to " + maxSize;
+        }
+
+        function appendElement() {
+            if (arr.length >= maxSize) {
+                document.getElementById("appendOutput").innerHTML = "Array is full. Cannot add more items.";
+                return;
+            }
+
+            let input = parseInt(document.getElementById("appendInput").value);
+            if(isNaN(input)){
+                document.getElementById("appendOutput").innerHTML = "Enter valid number.";
+                return;
+            }
+
+            arr.push(input);
+            document.getElementById("appendOutput").innerHTML = `${input} added successfully.`;
+            document.getElementById("arrDisplay").innerHTML = JSON.stringify(arr, null, 2);
+            document.getElementById("appendInput").value = "";
         }
 
         function removeValFunc(useSplice) {

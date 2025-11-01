@@ -61,6 +61,12 @@
       let resultBox = document.getElementById("result");
       let result = "";
 
+      if(str1 === "" || str2 === "") {
+        result = "Please enter both strings.";
+        resultBox.innerHTML = result;
+        return;
+      }
+
       if (method === "strict") {
         result = (str1 === str2)
           ? "Both strings are STRICTLY equal."
